@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #DFD0B8;
+    font-family: 'Rubik', sans-serif;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+.header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+    transition: .5s;
+}
+.header:hover::after {
+    left: 100%;
+}
+
+.mynav a {
+    font-size: 1.15rem;
+    color: #FFFFFF;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-weight: 500;
+    margin-left: 2.5rem;
+    position: relative;
+    padding: 20;
+}
+
+#check {
+    display: none;
+}
+
+.burger {
+    position: absolute;
+    right: 5%;
+    font-size: 2.8rem;
+    cursor: pointer;
+    display: none;
+}
+
+nav a::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #3C5B6F;
+    transition: all .5s;
+}
+nav a:hover::before {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .burger {
+        display: inline-flex;
+    }
+    #check:checked~.burger #menu-icon {
+        display: none;
+    }
+    #check:checked~.burger #close-icon {
+        display: block;
+    }
+    .burger #close-icon {
+        display: none;
+    }
+
+    .mynav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(50px);
+        overflow: hidden;
+        transition: .3s ease;
+    }
+    #check:checked~.mynav {
+        height: 17.7rem;
+    }
+    .mynav a {
+        display: block;
+        font-size: 1.1rem;
+        margin: 1.5rem 0;
+        text-align: center;
+        transform: translateY(-50px);
+        opacity: 0;
+        transition: .3s ease;
+    }
+    #check:checked~.mynav a {
+        transform: translateY(0px);
+        opacity: 1;
+        transition-delay: calc(.15s * var(--i));
+    }
+    
+    nav a::before {
+        display: none;
+    }
+}
+
+.container {
+    max-width: 800px;
+    margin: 7% auto;
+    padding: 20px;
+    background-color: #9b9790;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-header {
+    text-align: center;
+    margin-bottom: 20px;
+    font: 200 "rubik",sans-serif;
+}
+
+.announcement-item {
+    background-color: #153448;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.announcement-item h2 {
+    margin-bottom: 10px;
+}
+
+.announcement-item .date {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: #DFD0B8;
+}
+
+.announcement-item p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.read-more {
+    display: inline-block;
+    background-color: #3C5B6F;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+    background-color: #2a4057;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
